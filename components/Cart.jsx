@@ -31,6 +31,7 @@ export default function Cart() {
 
     const response = await fetch("/api/checkout_sessions", {
       method: "POST",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
