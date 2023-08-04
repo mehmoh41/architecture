@@ -10,7 +10,7 @@ This is an E-commerce application built with Sanity, Next.js, and Stripe.
 
 #### screenshot
 
-![screenshot](./screenshot.jpg 'screenshot')
+![screenshot](./screenshot.jpg "screenshot")
 
 ## Table of Contents
 
@@ -116,54 +116,54 @@ npm install @sanity/client @sanity/image-url @stripe/stripe-js canvas-confetti n
 
 ```ts
 export default {
-  name: 'product',
-  title: 'Product',
-  type: 'document',
+  name: "product",
+  title: "Product",
+  type: "document",
   fields: [
     {
-      name: 'image',
-      title: 'Image',
-      type: 'array',
-      of: [{ type: 'image' }], // this is an array of image objects
+      name: "image",
+      title: "Image",
+      type: "array",
+      of: [{ type: "image" }], // this is an array of image objects
       options: {
         // hotspot is a boolean that allows you to focus on a certain part of the image when cropping
         hotspot: true,
       },
     },
     {
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name: "name",
+      title: "Name",
+      type: "string",
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug', // sanity has a slug type that generates a slug
+      name: "slug",
+      title: "Slug",
+      type: "slug", // sanity has a slug type that generates a slug
       options: {
-        source: 'name', // this is the field that the slug is generated from
+        source: "name", // this is the field that the slug is generated from
         maxLength: 96,
       },
     },
     {
-      name: 'price',
-      title: 'Price',
-      type: 'number',
+      name: "price",
+      title: "Price",
+      type: "number",
     },
     {
-      name: 'details',
-      title: 'Details',
-      type: 'string',
+      name: "details",
+      title: "Details",
+      type: "string",
     },
   ],
-}
+};
 ```
 
 - import and export the schema in the `schemas/index.ts` file:
 
 ```ts
-import product from './product'
+import product from "./product";
 
-export const schemaTypes = [product]
+export const schemaTypes = [product];
 ```
 
 > Note: Create as many schemas as you need and import them in the `schemas/index.ts` file.
@@ -201,18 +201,18 @@ NEXT_PUBLIC_SANITY_TOKEN='Your sanity API token'
 - create a `lib/client.js` file at the root of your project directory with the following code:
 
 ```js
-import sanityClient from '@sanity/client'
-import imageUrlBuilder from '@sanity/image-url'
+import sanityClient from "@sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
 
 export const client = sanityClient({
   // run sanity manage to open the manage project webpage
-  projectId: 'eglqvky8', // check project id in manage project homepage
-  dataset: 'production', // check dataset name in Datasets tab
+  projectId: "eglqvky8", // check project id in manage project homepage
+  dataset: "production", // check dataset name in Datasets tab
 
   // TODO: try to omit apiVersion
   // To check when a git project was created, run:
   // git log --reverse --format="%ai" | tail -1
-  apiVersion: '2023-03-14', // when this project was created
+  apiVersion: "2023-03-14", // when this project was created
 
   useCdn: true,
 
@@ -223,11 +223,11 @@ export const client = sanityClient({
   // This will ignore the browser warning about using the token in the client side (but since we are using .env.local and nextjs ssr we are safe)
   // sanity docs on this: https://www.sanity.io/help/js-client-browser-token
   ignoreBrowserTokenWarning: true,
-})
+});
 
 // use sanity images and access images urls
-const builder = imageUrlBuilder(client)
-export const urlFor = (source) => builder.image(source)
+const builder = imageUrlBuilder(client);
+export const urlFor = (source) => builder.image(source);
 ```
 
 > Remember to add your project id and dataset name for your current Sanity project
@@ -239,7 +239,7 @@ export const urlFor = (source) => builder.image(source)
 - import the `client` from `lib/client.js` in your page component:
 
 ```js
-import { client } from '@/lib/client'
+import { client } from "@/lib/client";
 ```
 
 - fetch data from Sanity in your pages with getServerSideProps (or getStaticProps if you want to use static generation):
@@ -247,14 +247,14 @@ import { client } from '@/lib/client'
 ```js
 export const getServerSideProps = async () => {
   // Fetch all products and banner in the Sanity dataset
-  const products = await client.fetch('*[_type == "product"]')
+  const products = await client.fetch('*[_type == "product"]');
 
   return {
     props: {
       products,
     },
-  }
-}
+  };
+};
 ```
 
 - add `{products}` to the props of the page component:
@@ -269,7 +269,7 @@ export default function Home({ products }) {
         ))}
       </h1>
     </div>
-  )
+  );
 }
 ```
 
@@ -286,7 +286,7 @@ return {
   },
   // revalidate every 60 second
   revalidate: 60,
-}
+};
 ```
 
 > IMPORTANT!: Choose the value according to your needs. If you need the data to be updated frequently, choose a lower value. If you don't need the data to be updated frequently, choose a higher value.
@@ -329,47 +329,47 @@ NEXT_PUBLIC_STRIPE_SECRET_KEY='your_stripe_secret_key'
 - create a `pages/api/stripe.js` file with the following code:
 
 ```js
-import Stripe from 'stripe'
+import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY)
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 // TIP: You can use 4242 4242 4242 4242 as a test card number with 424 as the CVC and any future date for the expiration date in the stripe checkout form for testing purposes
 // TIP: Remember to set stripe to test mode in the dashboard
 // TIP: You can go to the stripe settings / Business settings / Customer emails and enable "Successful payments" to send an email to the customer when the payment is successful (the email will not be sent in test mode)
 
 export default async function handler(req, res) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     // console.log(req.body)
 
     try {
       const params = {
-        submit_type: 'pay',
-        mode: 'payment',
-        payment_method_types: ['card'],
-        billing_address_collection: 'auto',
+        submit_type: "pay",
+        mode: "payment",
+        payment_method_types: ["card"],
+        billing_address_collection: "auto",
 
         // Shipping options - create them in the Stripe dashboard and copy the IDs here
         // @link https://dashboard.stripe.com/test/shipping-rates
-        shipping_options: [
-          // FREE SHIPPING
-          { shipping_rate: 'shr_1Mp2HsKA1UjcyalEY6GCZK8A' },
-        ],
+        // shipping_options: [
+        //   // FREE SHIPPING
+        //   { shipping_rate: 'shr_1Mp2HsKA1UjcyalEY6GCZK8A' },
+        // ],
 
         line_items: req.body.map((item) => {
           // access sanity image
           // @link https://www.sanity.io/manage
-          const img = item.image[0].asset._ref
+          const img = item.image[0].asset._ref;
           const newImage = img
             .replace(
-              'image-',
+              "image-",
               // NOTE: use sanity project id in the url
-              'https://cdn.sanity.io/images/eglqvky8/production/'
+              "https://cdn.sanity.io/images/eglqvky8/production/"
             )
-            .replace('-webp', '.webp') // NOTE: put .jpg or .png if you don't use webp images
+            .replace("-webp", ".webp"); // NOTE: put .jpg or .png if you don't use webp images
 
           return {
             price_data: {
-              currency: 'eur',
+              currency: "eur",
               product_data: {
                 name: item.name,
                 images: [newImage],
@@ -383,25 +383,25 @@ export default async function handler(req, res) {
               minimum: 1,
             },
             quantity: item.quantity,
-          }
+          };
         }),
 
         // ? REDIRECT URLS when stripe checkout is successful or canceled
         success_url: `${req.headers.origin}/success`,
         cancel_url: `${req.headers.origin}/canceled`,
         automatic_tax: { enabled: true },
-      }
+      };
 
       // Create Checkout Sessions from body params.
-      const session = await stripe.checkout.sessions.create(params)
+      const session = await stripe.checkout.sessions.create(params);
 
-      res.status(200).json(session) // return session
+      res.status(200).json(session); // return session
     } catch (err) {
-      res.status(err.statusCode || 500).json(err.message)
+      res.status(err.statusCode || 500).json(err.message);
     }
   } else {
-    res.setHeader('Allow', 'POST')
-    res.status(405).end('Method Not Allowed')
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method Not Allowed");
   }
 }
 ```
@@ -415,19 +415,19 @@ export default async function handler(req, res) {
 - create a `lib/getStripe.js` file with the following code:
 
 ```js
-import { loadStripe } from '@stripe/stripe-js'
+import { loadStripe } from "@stripe/stripe-js";
 
-let stripePromise
+let stripePromise;
 
 const getStripe = () => {
   if (!stripePromise) {
-    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
   }
 
-  return stripePromise
-}
+  return stripePromise;
+};
 
-export default getStripe
+export default getStripe;
 ```
 
 &nbsp;
@@ -437,7 +437,7 @@ export default getStripe
 - import the `getStripe` function in your `Cart` component or whenever you need to implement a checkout button
 
 ```js
-import getStripe from '../lib/getStripe'
+import getStripe from "../lib/getStripe";
 ```
 
 - create a `handleCheckout` function that will handle the checkout process
@@ -445,24 +445,24 @@ import getStripe from '../lib/getStripe'
 ```js
 // STRIPE CHECKOUT
 const handleCheckout = async () => {
-  const stripe = await getStripe()
+  const stripe = await getStripe();
 
-  const response = await fetch('/api/stripe', {
-    method: 'POST',
+  const response = await fetch("/api/stripe", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(cartItems),
-  })
+  });
 
-  if (response.statusCode === 500) return
+  if (response.statusCode === 500) return;
 
-  const data = await response.json()
+  const data = await response.json();
 
-  toast.loading('Redirecting to checkout...')
+  toast.loading("Redirecting to checkout...");
 
-  stripe.redirectToCheckout({ sessionId: data.id })
-}
+  stripe.redirectToCheckout({ sessionId: data.id });
+};
 ```
 
 - create a `button` jsx element and add the `onClick` event handler

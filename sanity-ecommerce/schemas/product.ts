@@ -37,5 +37,11 @@ export default {
       title: 'Details',
       type: 'string',
     },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'array',
+      of: [{type: 'block'}],
+    },
   ],
 }

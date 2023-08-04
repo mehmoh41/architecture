@@ -7,12 +7,11 @@ import {getStartedPlugin} from './plugins/sanity-plugin-tutorial'
 const devOnlyPlugins = [getStartedPlugin()]
 
 export default defineConfig({
-  name: 'default',
-  title: 'sanity-ecommerce',
+  name: 'sanityArchitect',
+  title: 'sanity-architect',
 
-  projectId: 'eglqvky8',
+  projectId: 'z7fqld1p',
   dataset: 'production',
-
   plugins: [deskTool(), visionTool(), ...(isDev ? devOnlyPlugins : [])],
 
   schema: {
