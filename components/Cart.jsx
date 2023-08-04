@@ -28,7 +28,6 @@ export default function Cart() {
   // STRIPE CHECKOUT
   const handleCheckout = async () => {
     const stripe = await getStripe();
-    console.log("cartItems", cartItems);
 
     const response = await fetch("/api/checkout_sessions", {
       method: "POST",
