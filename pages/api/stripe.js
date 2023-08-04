@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 
 // TIP: You can use 4242 4242 4242 4242 as a test card number with 424 as the CVC and any future date for the expiration date in the stripe checkout form for testing purposes
 // TIP: Remember to set stripe to test mode in the dashboard
