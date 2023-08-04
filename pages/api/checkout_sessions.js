@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         //     quantity: 1,
         //   },
         // ],
-        line_items: req.body.map((item) => {
+        lineItems: req.body.map((item) => {
           // access sanity image
           // @link https://www.sanity.io/manage
           const img = item.image[0].asset._ref;
