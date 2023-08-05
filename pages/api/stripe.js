@@ -7,9 +7,8 @@ const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 // TIP: You can go to the stripe settings / Business settings / Customer emails and enable "Successful payments" to send an email to the customer when the payment is successful (the email will not be sent in test mode)
 
 export default async function handler(req, res) {
+  console.log("it is coming");
   if (req.method === "POST") {
-    // console.log(req.body)
-
     try {
       const params = {
         submit_type: "pay",
@@ -34,7 +33,7 @@ export default async function handler(req, res) {
               // NOTE: use sanity project id in the url
               "https://cdn.sanity.io/images/z7fqld1p/production/"
             )
-            .replace("-webp", ".webp"); // NOTE: put .jpg or .png if you don't use webp images
+            .replace("-jpg", ".jpg", "-png", ".png"); // NOTE: put .jpg or .png if you don't use webp images
 
           return {
             price_data: {
@@ -44,7 +43,7 @@ export default async function handler(req, res) {
                 images: [newImage],
               },
 
-              // unit_amount: item.price * 100, // convert price to cents
+              unit_amount: item.price * 100, // convert price to cents
             },
 
             adjustable_quantity: {
@@ -62,6 +61,7 @@ export default async function handler(req, res) {
       };
 
       // Create Checkout Sessions from body params.
+
       const session = await stripe.checkout.sessions.create(params);
 
       res.status(200).json(session); // return session

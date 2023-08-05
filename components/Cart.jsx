@@ -26,22 +26,20 @@ export default function Cart() {
   } = useStateContext();
 
   // STRIPE CHECKOUT
-  const handleCheckout = async () => {
+  const handleCheckout = async (e) => {
+    e.preventDefault();
     const stripe = await getStripe();
 
-    const response = await fetch("/api/checkout_sessions", {
+    const response = await fetch("/api/stripe", {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cartItems),
     });
-
+    console.log("response", response);
     if (response.statusCode === 500) return;
-
     const data = await response.json();
-
     toast.loading("Redirecting to checkout...");
     stripe.redirectToCheckout({ sessionId: data.id });
   };
@@ -135,9 +133,9 @@ export default function Cart() {
               </div>
               <div className="btn-container">
                 {/* STRIPE CHECKOUT BUTTON */}
-                {/* <form action="/api/checkout_sessions" method="POST"> */}
+                {/* <form action="/api/stripe" method="POST"> */}
                 <button
-                  type="button"
+                  type="submit"
                   className="btn"
                   role="link"
                   onClick={handleCheckout}
