@@ -26,7 +26,7 @@ export default function Home({ products, bannerData, categories }) {
           );
         })}
       </div>
-      {/* <BlockQoute /> */}
+
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
   );
