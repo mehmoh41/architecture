@@ -1,5 +1,11 @@
 import { client } from "@/lib/client";
-import { HeroBanner, Product, FooterBanner, BlockQoute } from "@/components";
+import {
+  HeroBanner,
+  Product,
+  FooterBanner,
+  BlockQoute,
+  About,
+} from "@/components";
 
 export default function Home({ products, bannerData, categories }) {
   return (
@@ -26,7 +32,7 @@ export default function Home({ products, bannerData, categories }) {
           );
         })}
       </div>
-
+      <About />
       <FooterBanner footerBanner={bannerData && bannerData[0]} />
     </>
   );
