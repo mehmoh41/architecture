@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const About = () => {
@@ -625,12 +626,12 @@ const About = () => {
                   by the readable content of a page when looking at its layout.
                   The point of using Lorem Ipsum is that it has a more-or-less.
                 </p>
-                <a
+                <Link
                   href="/#"
                   className="inline-flex items-center justify-center px-10 py-4 text-base font-normal text-center text-white rounded-lg bg-blue-500 hover:bg-opacity-90 lg:px-8 xl:px-10"
                 >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
           </div>
