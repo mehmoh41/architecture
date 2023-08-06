@@ -7,7 +7,6 @@ const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY}`);
 // TIP: You can go to the stripe settings / Business settings / Customer emails and enable "Successful payments" to send an email to the customer when the payment is successful (the email will not be sent in test mode)
 
 export default async function handler(req, res) {
-  console.log("it is coming");
   if (req.method === "POST") {
     try {
       const params = {

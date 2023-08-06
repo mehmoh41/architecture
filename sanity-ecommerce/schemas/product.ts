@@ -43,5 +43,16 @@ export default {
       type: 'array',
       of: [{type: 'block'}],
     },
+    {
+      name: 'category',
+      title: 'Category',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'category'}],
+        },
+      ],
+    },
   ],
 }
