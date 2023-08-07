@@ -33,7 +33,7 @@ export default function Home({ products, bannerData, categories }) {
         })}
       </div>
       <About />
-      <FooterBanner footerBanner={bannerData && bannerData[0]} />
+      {/* <FooterBanner footerBanner={bannerData && bannerData[0]} /> */}
     </>
   );
 }

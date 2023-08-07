@@ -5,7 +5,7 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <section className="pt-15 lg:pt-[110px] pb-12 lg:pb-[80px] overflow-hidden px-4 md:px-8 bg-black text-white mt-12">
+      <section className="pt-15 lg:pt-[110px] pb-12 lg:pb-[80px] overflow-hidden px-4 md:px-8 bg-white mt-12">
         <div className="container">
           <div className="flex flex-wrap items-center justify-between -mx-4">
             <div className="w-full px-4 lg:w-6/12">
