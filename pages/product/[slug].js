@@ -87,7 +87,7 @@ export default function ProductDetail({ product, products, categories }) {
           <h4 className="font-semibold text-xl">Description: </h4>
           {/* <p>{details}</p> */}
           <p>{<PortableText value={product.description} />}</p>
-          <p className="price">${price}</p>
+          <p className="text-3xl text-indigo-700 font-black py-4">${price}</p>
           <div className="quantity">
             <h3 className="font-medium">Quantity:</h3>
             <p className="flex items-center gap-4 border-2 shadow-sm px-4 py-2 font-bold">

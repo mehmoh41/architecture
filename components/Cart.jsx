@@ -54,9 +54,9 @@ export default function Cart() {
             className="cart-heading"
             onClick={() => setShowCart(false)}
           >
-            <AiOutlineLeft />
+            <AiOutlineLeft color="#303F9F" />
             <span className="heading">Your Cart</span>
-            <span className="cart-num-items">({totalQuantities} items)</span>
+            <span className="text-indigo-700">({totalQuantities} items)</span>
           </button>
 
           {/* EMPTY CART */}
@@ -86,33 +86,34 @@ export default function Cart() {
                     alt="cart item"
                     className="cart-product-image"
                   />
-                  <div className="item-desc">
-                    <div className="flex top">
-                      <h5>{item.name}</h5>
-                      <h4>${item.price}</h4>
+                  <div className="w-full ">
+                    <div className="flex justify-between items-center">
+                      <h5 className="text-2xl font-semibold">{item.name}</h5>
+                      <h4 className="text-2xl text-indigo-700 font-medium">
+                        ${item.price}
+                      </h4>
                     </div>
-                    <div className="flex bottom">
-                      <div>
-                        <p className="quantity-desc">
-                          <span
-                            className="minus"
-                            onClick={() =>
-                              toggleCartItemQuantity(item._id, "dec")
-                            }
-                          >
-                            <AiOutlineMinus />
-                          </span>
-                          <span className="num">{item.quantity}</span>
-                          <span
-                            className="plus"
-                            onClick={() =>
-                              toggleCartItemQuantity(item._id, "inc")
-                            }
-                          >
-                            <AiOutlinePlus />
-                          </span>
-                        </p>
-                      </div>
+                    <div className="flex justify-between items-center mt-16">
+                      <p className="flex items-center gap-4 border-2 shadow-sm px-4 py-2 font-bold">
+                        <span
+                          className="cursor-pointer"
+                          onClick={() =>
+                            toggleCartItemQuantity(item._id, "dec")
+                          }
+                        >
+                          <AiOutlineMinus />
+                        </span>
+                        <span className="num">{item.quantity}</span>
+                        <span
+                          className="cursor-pointer"
+                          onClick={() =>
+                            toggleCartItemQuantity(item._id, "inc")
+                          }
+                        >
+                          <AiOutlinePlus />
+                        </span>
+                      </p>
+
                       <button
                         type="button"
                         className="remove-item"
@@ -128,8 +129,8 @@ export default function Cart() {
           {cartItems.length >= 1 && (
             <div className="cart-bottom">
               <div className="total">
-                <h3>Subtotal</h3>
-                <h3>${totalPrice}</h3>
+                <h3 className="text-2xl font-bold tracking-wide">Subtotal</h3>
+                <h3 className="font-bold tracking-wide">${totalPrice}</h3>
               </div>
               <div className="btn-container">
                 {/* STRIPE CHECKOUT BUTTON */}

@@ -27,8 +27,8 @@ export default function Layout({ children }) {
 
       <footer>
         {footerContext &&
-          footerContext.map((footer) => {
-            return <Footer footer={footer} />;
+          footerContext.map((footer, index) => {
+            return <Footer footer={footer} key={index} />;
           })}
       </footer>
     </div>
