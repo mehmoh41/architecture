@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AiFillInstagram, AiOutlineTwitter } from "react-icons/ai";
 import ButtonMailto from "./MailTo";
 
-export default function Footer() {
+export default function Footer({ footer }) {
   var currentTime = new Date();
   var year = currentTime.getFullYear();
 
@@ -15,11 +15,13 @@ export default function Footer() {
               contact us
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-              <li className="mb-4 hover:underline">+923118198190</li>
-              <li className="mb-4 hover:underline">Quetta, Pakistan</li>
+              <li className="mb-4 hover:underline">{footer.phone}</li>
+              <li className="mb-4 hover:underline capitalize">
+                {footer.address}
+              </li>
               <li className="mb-4 hover:underline">
                 <ButtonMailto
-                  label="moh.meh41@gmail.com"
+                  label={footer.email}
                   mailto="mailto:moh.meh41@gmail.com"
                 />
               </li>
@@ -31,20 +33,20 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400 font-medium">
               <li className="mb-4">
-                <Link href="#" className=" hover:underline">
+                <Link href="/products" className=" hover:underline">
                   Products
                 </Link>
               </li>
               <li className="mb-4">
-                <Link href="#" className="hover:underline">
+                <Link href="/about" className="hover:underline">
                   About
                 </Link>
               </li>
-              <li className="mb-4">
+              {/* <li className="mb-4">
                 <Link href="#" className="hover:underline">
                   Cart
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -73,12 +75,16 @@ export default function Footer() {
         </div>
         <div className="px-4 py-6 w-full md:flex md:items-center md:justify-between">
           <span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">
-            © {year} <a href="https://mehmoh41.vercel.com/">MM</a>. All Rights
-            Reserved.
+            © {year}{" "}
+            <a href="https://github.com/mehmoh41" target="_blank">
+              MM
+            </a>
+            . All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center md:mt-0">
             <Link
-              href="#"
+              target="_blank"
+              href={`${footer?.facebook}`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -97,7 +103,8 @@ export default function Footer() {
               <span className="sr-only">Facebook page</span>
             </Link>
             <Link
-              href="#"
+              target="_blank"
+              href={`${footer?.discord}`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -112,7 +119,8 @@ export default function Footer() {
               <span className="sr-only">Discord community</span>
             </Link>
             <Link
-              href="#"
+              target="_blank"
+              href={`${footer?.twitter}`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -131,7 +139,8 @@ export default function Footer() {
               <span className="sr-only">Twitter page</span>
             </Link>
             <Link
-              href="#"
+              target="_blank"
+              href={`${footer?.gihub}`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -150,7 +159,8 @@ export default function Footer() {
               <span className="sr-only">GitHub account</span>
             </Link>
             <Link
-              href="#"
+              target="_blank"
+              href={`${footer?.dribble}`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
@@ -167,6 +177,37 @@ export default function Footer() {
                 />
               </svg>
               <span className="sr-only">Dribbble account</span>
+            </Link>
+            <Link
+              target="_blank"
+              href={`${footer?.behance}`}
+              className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+            >
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M2.5 19C1.67157 19 1 18.3284 1 17.5V6.5C1 5.67157 1.67157 5 2.5 5H8C13 5 13 11.5 10 11.5C13 11.5 14 19 8 19H2.5ZM4.5 11C4.22386 11 4 10.7761 4 10.5V7.5C4 7.22386 4.22386 7 4.5 7H7C7 7 9 7 9 9C9 11 7 11 7 11H4.5ZM4.5 13C4.22386 13 4 13.2239 4 13.5V16.5C4 16.7761 4.22386 17 4.5 17H8C8 17 9.5 17 9.5 15C9.5 13 8 13 8 13H4.5Z"
+                  fill="#fff"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M21.499 14.0034C22.3279 14.0034 23.0212 13.3199 22.8522 12.5085C21.6065 6.52886 12.9128 7.08088 13 14.0034C13.0665 19.2762 20.4344 20.9671 22.6038 16.1898C22.9485 15.4308 22.1747 14.9997 21.5372 14.9997C20.9706 14.9997 20.5313 15.5223 20.1693 15.9582C19.1272 17.2132 15.9628 17.1221 15.5449 14.5142C15.5005 14.2375 15.7304 14.0034 16.0106 14.0034H21.499ZM15.8184 11.9997C15.671 11.9997 15.5758 11.8453 15.6545 11.7207C16.7141 10.0424 19.2614 10.0605 20.3398 11.7189C20.4207 11.8434 20.3257 11.9997 20.1772 11.9997H15.8184Z"
+                  fill="#fff"
+                />
+                <path
+                  d="M16 6C15.4477 6 15 6.44772 15 7C15 7.55228 15.4477 8 16 8H20C20.5523 8 21 7.55228 21 7C21 6.44772 20.5523 6 20 6H16Z"
+                  fill="#fff"
+                />
+              </svg>
+
+              <span className="sr-only">Behance account</span>
             </Link>
           </div>
         </div>

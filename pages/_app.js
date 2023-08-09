@@ -1,11 +1,11 @@
-import '@/styles/globals.css'
-import { Toaster } from 'react-hot-toast'
+import "@/styles/globals.css";
+import { Toaster } from "react-hot-toast";
 
 // NOTE: By using curly braces when importing react components, we only need to specify the directory where the component is located (in this case, the components directory)
-import { Layout } from '@/components'
+import { Layout } from "@/components";
 
 // Context Provider
-import { StateContext } from '@/context/StateContext'
+import { StateContext } from "@/context/StateContext";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -15,5 +15,5 @@ export default function App({ Component, pageProps }) {
         <Component {...pageProps} />
       </Layout>
     </StateContext>
-  )
+  );
 }

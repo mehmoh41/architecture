@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { client } from "@/lib/client";
+import { useStateContext } from "@/context/StateContext";
 import {
   HeroBanner,
   Product,
@@ -7,7 +9,13 @@ import {
   About,
 } from "@/components";
 
-export default function Home({ products, bannerData, categories }) {
+export default function Home({ products, bannerData, categories, footer }) {
+  const { footerContext, setFooterContext } = useStateContext();
+
+  useEffect(() => {
+    return footer && setFooterContext(footer);
+  }, []);
+
   return (
     <>
       <HeroBanner
@@ -43,12 +51,14 @@ export const getStaticProps = async () => {
   const products = await client.fetch(`*[_type == "product"]`);
   const bannerData = await client.fetch(`*[_type == "banner"]`);
   const categories = await client.fetch(`*[_type == "category"]`);
+  const footer = await client.fetch(`*[_type == "footer"]`);
 
   return {
     props: {
       products,
       bannerData,
       categories,
+      footer,
     },
 
     // TODO: Change this if the application needs to be updated more frequently or less or not at all

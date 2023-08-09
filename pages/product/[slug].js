@@ -74,7 +74,7 @@ export default function ProductDetail({ product, products, categories }) {
         <div className="product-detail-desc">
           <h1 className="text-3xl font-bold capitalize">{name}</h1>
 
-          <div className="reviews">
+          {/* <div className="reviews">
             <div>
               <AiFillStar />
               <AiFillStar />
@@ -83,34 +83,38 @@ export default function ProductDetail({ product, products, categories }) {
               <AiOutlineStar />
             </div>
             <p>(20)</p>
-          </div>
+          </div> */}
           <h4 className="font-semibold text-xl">Description: </h4>
           {/* <p>{details}</p> */}
           <p>{<PortableText value={product.description} />}</p>
           <p className="price">${price}</p>
           <div className="quantity">
-            <h3>Quantity:</h3>
-            <p className="quantity-desc">
-              <span className="minus" onClick={decQty}>
-                <AiOutlineMinus />
+            <h3 className="font-medium">Quantity:</h3>
+            <p className="flex items-center gap-4 border-2 shadow-sm px-4 py-2 font-bold">
+              <span className="cursor-pointer" onClick={decQty}>
+                <AiOutlineMinus color="#000" />
               </span>
-              <span className="num">{qty}</span>
-              <span className="plus" onClick={incQty}>
-                <AiOutlinePlus />
+              <span className="text-xl">{qty}</span>
+              <span className="cursor-pointer" onClick={incQty}>
+                <AiOutlinePlus color="#000" />
               </span>
             </p>
           </div>
-          <div className="buttons">
+          <div className=" flex items-center mt-10 gap-20">
             <button
               type="button"
-              className="add-to-cart"
+              className="px-10 py-3 bg-transparent border border-indigo-700 font-semibold hover:bg-indigo-700 hover:text-white w-48"
               onClick={() => {
                 onAdd(product, qty);
               }}
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick={handleBuyNow}>
+            <button
+              type="button"
+              className="px-10 py-3 bg-indigo-700 text-white font-semibold hover:bg-indigo-800 w-48"
+              onClick={handleBuyNow}
+            >
               Buy Now
             </button>
           </div>
