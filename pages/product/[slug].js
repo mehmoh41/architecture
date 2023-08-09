@@ -100,10 +100,10 @@ export default function ProductDetail({ product, products, categories }) {
               </span>
             </p>
           </div>
-          <div className=" flex items-center mt-10 gap-20">
+          <div className="block lg:flex items-center mt-10 md:gap-20">
             <button
               type="button"
-              className="px-10 py-3 bg-transparent border border-indigo-700 font-semibold hover:bg-indigo-700 hover:text-white w-48"
+              className="px-4 md:px-10 py-3 bg-transparent border border-indigo-700 font-semibold hover:bg-indigo-700 hover:text-white  w-32 md:w-48 mr-10 md:mr-0"
               onClick={() => {
                 onAdd(product, qty);
               }}
@@ -112,7 +112,7 @@ export default function ProductDetail({ product, products, categories }) {
             </button>
             <button
               type="button"
-              className="px-10 py-3 bg-indigo-700 text-white font-semibold hover:bg-indigo-800 w-48"
+              className="px-4 md:px-10 py-3 bg-indigo-700 text-white font-semibold hover:bg-indigo-800 w-32 md:w-48"
               onClick={handleBuyNow}
             >
               Buy Now

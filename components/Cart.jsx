@@ -45,7 +45,7 @@ export default function Cart() {
   };
 
   return (
-    <div>
+    <div className="px-5 md:px-0">
       <div className="cart-wrapper" ref={cartRef}>
         <div className="cart-container">
           {/* CART HEADING */}
@@ -77,7 +77,7 @@ export default function Cart() {
           )}
 
           {/* CART WITH ITEMS */}
-          <div className="product-container">
+          <div className="product-container h-screen md:h-auto">
             {cartItems.length >= 1 &&
               cartItems.map((item) => (
                 <div className="product" key={item._id}>
