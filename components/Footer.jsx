@@ -42,11 +42,15 @@ export default function Footer({ footer }) {
                   About
                 </Link>
               </li>
-              {/* <li className="mb-4">
-                <Link href="#" className="hover:underline">
-                  Cart
+              <li className="mb-4">
+                <Link
+                  target="_blank"
+                  href={`${footer.behance}`}
+                  className="hover:underline capitalize"
+                >
+                  who am i ?
                 </Link>
-              </li> */}
+              </li>
             </ul>
           </div>
 
@@ -180,7 +184,7 @@ export default function Footer({ footer }) {
             </Link>
             <Link
               target="_blank"
-              href={`${footer?.behance}`}
+              href={`https://www.behance.net/gallery/64265123/1`}
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
             >
               <svg
